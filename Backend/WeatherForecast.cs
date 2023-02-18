@@ -1,4 +1,4 @@
-namespace Livraria;
+namespace Backend;
 
 public class WeatherForecast
 {

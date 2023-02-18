@@ -229,11 +229,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Gabi Borges\\ProjetoLivraria\\BackEnd\\Livraria\\Livraria.csproj",
-      "projectName": "Livraria",
-      "projectPath": "C:\\Users\\Gabi Borges\\ProjetoLivraria\\BackEnd\\Livraria\\Livraria.csproj",
+      "projectUniqueName": "C:\\Users\\Gabi Borges\\ProjetoLivraria\\Backend\\Backend.csproj",
+      "projectName": "Backend",
+      "projectPath": "C:\\Users\\Gabi Borges\\ProjetoLivraria\\Backend\\Backend.csproj",
       "packagesPath": "C:\\Users\\Gabi Borges\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Gabi Borges\\ProjetoLivraria\\BackEnd\\Livraria\\obj\\",
+      "outputPath": "C:\\Users\\Gabi Borges\\ProjetoLivraria\\Backend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Gabi Borges\\AppData\\Roaming\\NuGet\\NuGet.Config"
