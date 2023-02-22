@@ -11,7 +11,6 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddDbContext<ApiDbContext>(op => 
-
     op.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
 

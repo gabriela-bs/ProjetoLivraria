@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Gabi Borges\\ProjetoLivraria\\Backend\\Backend.csproj": {}
+    "C:\\Users\\Gabi Borges\\ProjetoLivraria\\backend\\Backend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Gabi Borges\\ProjetoLivraria\\Backend\\Backend.csproj": {
+    "C:\\Users\\Gabi Borges\\ProjetoLivraria\\backend\\Backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Gabi Borges\\ProjetoLivraria\\Backend\\Backend.csproj",
+        "projectUniqueName": "C:\\Users\\Gabi Borges\\ProjetoLivraria\\backend\\Backend.csproj",
         "projectName": "Backend",
-        "projectPath": "C:\\Users\\Gabi Borges\\ProjetoLivraria\\Backend\\Backend.csproj",
+        "projectPath": "C:\\Users\\Gabi Borges\\ProjetoLivraria\\backend\\Backend.csproj",
         "packagesPath": "C:\\Users\\Gabi Borges\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Gabi Borges\\ProjetoLivraria\\Backend\\obj\\",
+        "outputPath": "C:\\Users\\Gabi Borges\\ProjetoLivraria\\backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Gabi Borges\\AppData\\Roaming\\NuGet\\NuGet.Config"

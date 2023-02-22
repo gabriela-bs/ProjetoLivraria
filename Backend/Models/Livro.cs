@@ -7,32 +7,37 @@ namespace Backend.Models
         [Key]
         public int IdLivro { get; set; }
 
-        [Required(ErrorMessage = "Campo obrigatório", AllowEmptyStrings = false)]
+        [Required(ErrorMessage = "Campo obrigatório")]
         [StringLength(100)]
-        public String Titulo { get; set; }
+        public string Titulo { get; set; }
 
         [StringLength(100)]
-        public String Subtitulo { get; set; }
+        public string? Subtitulo { get; set; }
 
         [StringLength(500)]
-        public String Resumo { get; set; }
+        public string? Resumo { get; set; }
 
-        [Required(ErrorMessage = "Campo obrigatório", AllowEmptyStrings = false)]
+        [Required(ErrorMessage = "Campo obrigatório")]
         [Range(0, 10000)]
         public int QuantPaginas { get; set; }
 
-        [Required(ErrorMessage = "Campo obrigatório", AllowEmptyStrings = false)]
-        [DisplayFormat(DataFormatString = "mm/dd/yyyy")]
+        [Required(ErrorMessage = "Campo obrigatório")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:mm/dd/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime DataPublicacao { get; set; }
 
-        [Required(ErrorMessage = "Campo obrigatório", AllowEmptyStrings = false)]
+        [Required(ErrorMessage = "Campo obrigatório")]
         [StringLength(150)]
-        public String Editora { get; set; }
+        public string Editora { get; set; }
 
         [Range(2, 20)]
-        public int Edicao { get; set; }  
+        public int? Edicao { get; set; }
 
-        public List<Autor> Autores { get; set; }
+        [Required(ErrorMessage = "Campo obrigatório")]
+        [Range(0, 10000)]
+        public int QuantLivros { get; set; }
+
+        public ICollection<Autor>? Autores { get; set; }
 
     }
     

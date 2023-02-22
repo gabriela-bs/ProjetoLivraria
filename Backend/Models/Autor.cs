@@ -9,13 +9,14 @@ namespace Backend.Models
         [Key]
         public int IdAutor { get; set; }
 
-        [Required(ErrorMessage = "Campo obrigatório", AllowEmptyStrings = false)]
+        [Required(ErrorMessage = "Campo obrigatório")]
         [StringLength(50)]
-        public String NomeAutor { get; set; }
+        public string NomeAutor { get; set; }
 
-        public int FKAutor { get; set; }
+        [ForeignKey("LivroID")]
+        public int LivroID { get; set; }
 
-        public Livro Livro { get; set;}
+        public virtual Livro? Livro { get; set; }
 
     }
 }

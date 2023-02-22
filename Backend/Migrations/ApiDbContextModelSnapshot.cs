@@ -30,7 +30,7 @@ namespace Backend.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdAutor"), 1L, 1);
 
-                    b.Property<int>("FKAutor")
+                    b.Property<int>("LivroID")
                         .HasColumnType("int");
 
                     b.Property<string>("NomeAutor")
@@ -40,7 +40,7 @@ namespace Backend.Migrations
 
                     b.HasKey("IdAutor");
 
-                    b.HasIndex("FKAutor");
+                    b.HasIndex("LivroID");
 
                     b.ToTable("Autores");
                 });
@@ -56,7 +56,7 @@ namespace Backend.Migrations
                     b.Property<DateTime>("DataPublicacao")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Edicao")
+                    b.Property<int?>("Edicao")
                         .HasColumnType("int");
 
                     b.Property<string>("Editora")
@@ -64,16 +64,17 @@ namespace Backend.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
 
+                    b.Property<int>("QuantLivros")
+                        .HasColumnType("int");
+
                     b.Property<int>("QuantPaginas")
                         .HasColumnType("int");
 
                     b.Property<string>("Resumo")
-                        .IsRequired()
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("Subtitulo")
-                        .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
@@ -91,7 +92,7 @@ namespace Backend.Migrations
                 {
                     b.HasOne("Backend.Models.Livro", "Livro")
                         .WithMany("Autores")
-                        .HasForeignKey("FKAutor")
+                        .HasForeignKey("LivroID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
