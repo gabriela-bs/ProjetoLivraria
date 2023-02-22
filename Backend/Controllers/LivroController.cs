@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Mvc;
 using Backend.Models;
 using Backend.Data;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
+using System.Text.Json;
 
 namespace Controllers.LivroController
 {
@@ -24,7 +26,26 @@ namespace Controllers.LivroController
            return Ok (await _context.Livros.ToListAsync());
         }
 
+
+
         [HttpGet("{id}")]
+        public async Task<ActionResult<List<LivroModel>>> Pesquisa( string pesquisaNome){
+            if (_context.Livros == null){
+                return Problem("Não há livro com esse nome");
+            }
+
+            var livros = from db in _context.Livros
+                        select db;
+
+            if(!String.IsNullOrEmpty(pesquisaNome)){
+                livros = livros.Where(x => x.Titulo.Contains(pesquisaNome));
+            }            
+
+            
+           return Ok (await _context.Livros.ToListAsync());
+        }
+
+/*        [HttpGet("{id}")]
         public async Task<ActionResult<LivroModel>> Busca (int id){
 
             var livro = await _context.Livros.FirstOrDefaultAsync(x => x.IdLivro == id);
@@ -35,7 +56,17 @@ namespace Controllers.LivroController
 
             return Ok(livro);
 
-        }
+        }*/
+
+/*        [AcceptVerbs("GET", "POST")]
+        public ActionResult VerificaTitulo(string Titulo){
+
+            if(!_context.VerificaTitulo(Titulo)){
+                return Json($"O titulo chamado {Titulo} já existe.");
+            }
+
+            return Json(true);
+        }*/
 
         [HttpPost]
         public async Task<ActionResult<LivroModel>> Cadastrar(LivroModel model){

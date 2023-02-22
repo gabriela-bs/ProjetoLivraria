@@ -2,6 +2,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 using Backend.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Backend.Models
 {
@@ -11,6 +12,8 @@ namespace Backend.Models
         [Key]
         public int IdLivro { get; set; }
 
+       // [Remote(action:"VerificaTitulo", controller: "LivroController")]
+       // [Index(IsUnique = true)]
         [Required(ErrorMessage = "Campo obrigatório")]
         [StringLength(100)]
         public string Titulo { get; set; }
@@ -46,4 +49,19 @@ namespace Backend.Models
         public ICollection<AutorModel>? Autores { get; set; }
 
     }
+
+/*    public class TituloDuplicado : ValidationAttribute {
+
+        private static string MensagemErro() => $"Esse titulo já existe";
+
+        protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
+        {
+            return (string) value == 
+            return base.IsValid(value, validationContext);
+        }
+    }*/
+
+
+
+
 }
