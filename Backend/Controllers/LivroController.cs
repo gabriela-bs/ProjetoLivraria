@@ -19,13 +19,13 @@ namespace Controllers.LivroController
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Livro>>> ListarLivros(){
+        public async Task<ActionResult<List<AutorModel>>> ListarLivros(){
 
            return Ok (await _context.Livros.ToListAsync());
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Livro>> Busca (int id){
+        public async Task<ActionResult<LivroModel>> Busca (int id){
 
             var livro = await _context.Livros.FirstOrDefaultAsync(x => x.IdLivro == id);
 
@@ -38,23 +38,24 @@ namespace Controllers.LivroController
         }
 
         [HttpPost]
-        public async Task<ActionResult<Livro>> Cadastrar(Livro livro){
+        public async Task<ActionResult<LivroModel>> Cadastrar(LivroModel model){
 
-                var novoLivro = new Livro {
+                var livro = new LivroModel {
 
-                    Titulo = livro.Titulo,
-                    Subtitulo = livro.Subtitulo,
-                    Resumo = livro.Resumo,
-                    QuantPaginas = livro.QuantPaginas,
-                    DataPublicacao = livro.DataPublicacao,
-                    Editora = livro.Editora,
-                    Edicao = livro.Edicao,
-                    QuantLivros = livro.QuantLivros
+                    Titulo = model.Titulo,
+                    Subtitulo = model.Subtitulo,
+                    Resumo = model.Resumo,
+                    QuantPaginas = model.QuantPaginas,
+                    DataPublicacao = model.DataPublicacao,
+                    Editora = model.Editora,
+                    Edicao = model.Edicao,
+                    QuantLivros = model.QuantLivros
 
                 };
 
                 try{
-                    await _context.Livros.AddAsync(novoLivro);
+                    
+                    await _context.Livros.AddAsync(livro);
                     await _context.SaveChangesAsync();
                    // return Created($"v1/livros/{novoLivro.IdLivro}", novoLivro);
 
@@ -70,7 +71,7 @@ namespace Controllers.LivroController
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<Livro>> Atualizar ([FromBody] Livro livroAtualizacao, int id){
+        public async Task<ActionResult<LivroModel>> Atualizar ([FromBody] LivroModel model, int id){
 
             if(!ModelState.IsValid){
                 return BadRequest();
@@ -83,14 +84,14 @@ namespace Controllers.LivroController
             }
 
             try{
-                livro.Titulo = livroAtualizacao.Titulo;
-                livro.Subtitulo = livroAtualizacao.Subtitulo;
-                livro.Resumo = livroAtualizacao.Resumo;
-                livro.QuantPaginas = livroAtualizacao.QuantPaginas;
-                livro.DataPublicacao = livroAtualizacao.DataPublicacao;
-                livro.Editora = livroAtualizacao.Editora;
-                livro.Edicao = livroAtualizacao.Edicao;
-                livro.QuantLivros = livroAtualizacao.QuantLivros;
+                livro.Titulo = model.Titulo;
+                livro.Subtitulo = model.Subtitulo;
+                livro.Resumo = model.Resumo;
+                livro.QuantPaginas = model.QuantPaginas;
+                livro.DataPublicacao = model.DataPublicacao;
+                livro.Editora = model.Editora;
+                livro.Edicao = model.Edicao;
+                livro.QuantLivros = model.QuantLivros;
                // livro.Autores = livroAtualizacao.Autores;
 
 
@@ -98,7 +99,7 @@ namespace Controllers.LivroController
                 await _context.SaveChangesAsync();
                 return Ok(livro);
             }
-            catch(Exception e){
+            catch(Exception){
                 return BadRequest();
             }
 
@@ -106,7 +107,7 @@ namespace Controllers.LivroController
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Livro>> Apagar(int id){
+        public async Task<ActionResult<LivroModel>> Apagar(int id){
 
             var livro = await _context.Livros.FirstOrDefaultAsync(x => x.IdLivro == id);
 
@@ -122,7 +123,7 @@ namespace Controllers.LivroController
             return Ok();
 
             }
-            catch(Exception e){
+            catch(Exception){
                 return BadRequest();
             }
 

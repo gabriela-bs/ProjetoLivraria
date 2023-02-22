@@ -1,10 +1,12 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-
+using System.Text.Json.Serialization;
+using Backend.Models;
 
 namespace Backend.Models
 {
-    public class Autor {
+    public class AutorModel
+    {
         
         [Key]
         public int IdAutor { get; set; }
@@ -13,10 +15,9 @@ namespace Backend.Models
         [StringLength(50)]
         public string NomeAutor { get; set; }
 
-        [ForeignKey("LivroID")]
+        [ForeignKey("LivroId")]
         public int LivroID { get; set; }
 
-        public virtual Livro? Livro { get; set; }
-
+        public virtual LivroModel? Livro { get; set; }   
     }
 }

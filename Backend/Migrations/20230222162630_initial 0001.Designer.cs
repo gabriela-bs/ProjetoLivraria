@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Backend.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    [Migration("20230222035257_refazendo banco 001")]
-    partial class refazendobanco001
+    [Migration("20230222162630_initial 0001")]
+    partial class initial0001
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,7 +24,7 @@ namespace Backend.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("Backend.Models.Autor", b =>
+            modelBuilder.Entity("Backend.Models.AutorModel", b =>
                 {
                     b.Property<int>("IdAutor")
                         .ValueGeneratedOnAdd()
@@ -47,7 +47,7 @@ namespace Backend.Migrations
                     b.ToTable("Autores");
                 });
 
-            modelBuilder.Entity("Backend.Models.Livro", b =>
+            modelBuilder.Entity("Backend.Models.LivroModel", b =>
                 {
                     b.Property<int>("IdLivro")
                         .ValueGeneratedOnAdd()
@@ -90,9 +90,9 @@ namespace Backend.Migrations
                     b.ToTable("Livros");
                 });
 
-            modelBuilder.Entity("Backend.Models.Autor", b =>
+            modelBuilder.Entity("Backend.Models.AutorModel", b =>
                 {
-                    b.HasOne("Backend.Models.Livro", "Livro")
+                    b.HasOne("Backend.Models.LivroModel", "Livro")
                         .WithMany("Autores")
                         .HasForeignKey("LivroID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -101,7 +101,7 @@ namespace Backend.Migrations
                     b.Navigation("Livro");
                 });
 
-            modelBuilder.Entity("Backend.Models.Livro", b =>
+            modelBuilder.Entity("Backend.Models.LivroModel", b =>
                 {
                     b.Navigation("Autores");
                 });

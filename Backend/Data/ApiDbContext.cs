@@ -7,9 +7,9 @@ namespace Backend.Data
 {
     public class ApiDbContext : DbContext {
 
-        public DbSet<Livro> Livros { get; set; }
+        public DbSet<LivroModel> Livros { get; set; }
         
-        public DbSet<Autor> Autores { get; set; }
+        public DbSet<AutorModel> Autores { get; set; }
 
         
         public ApiDbContext (DbContextOptions<ApiDbContext> options) : base (options) { }

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Backend.Migrations
 {
-    public partial class refazendobanco001 : Migration
+    public partial class initial0001 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

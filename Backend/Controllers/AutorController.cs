@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
+
 namespace Backend.Controllers
 {
 
@@ -21,13 +22,13 @@ namespace Backend.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Autor>>> ListarAutores(){
+        public async Task<ActionResult<List<AutorModel>>> ListarAutores(){
 
             return Ok (await _context.Autores.ToListAsync());
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Autor>> BuscaAutor(int id){
+        public async Task<ActionResult<AutorModel>> BuscaAutor(int id){
 
             var autor = await _context.Autores
             .Include(x => x.Livro)
@@ -44,7 +45,15 @@ namespace Backend.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Autor>> Cadastrar(Autor autor){
+        public async Task<ActionResult<AutorModel>> Cadastrar([FromBody] AutorModel model){
+
+            
+            var autor = new AutorModel {
+
+                NomeAutor = model.NomeAutor,
+                LivroID = model.LivroID
+
+            };
 
             try
             {
@@ -52,33 +61,36 @@ namespace Backend.Controllers
                 await _context.SaveChangesAsync();
                 return Ok();
             }
-            catch(Exception e){
+
+            catch(Exception){
                 return BadRequest();
             }
         }
 
+
+
         [HttpPut("{id}")]
-        public async Task<ActionResult<Autor>> Atualizar ([FromBody] Autor autor, int id){
+        public async Task<ActionResult<AutorModel>> Atualizar ([FromBody] AutorModel model, int id){
 
             if(!ModelState.IsValid){
                 return BadRequest();
             }
 
-            var autorAtualizado = await _context.Autores.FirstOrDefaultAsync(x => x.IdAutor == id);
+            var autor= await _context.Autores.FirstOrDefaultAsync(x => x.IdAutor == id);
 
-            if (autorAtualizado == null){
+            if (autor == null){
                 return NotFound();
             }
 
             try
             {
-                autorAtualizado.NomeAutor = autor.NomeAutor;
+                autor.NomeAutor = model.NomeAutor;
 
-                _context.Autores.Update(autorAtualizado);
+                _context.Autores.Update(autor);
                 await _context.SaveChangesAsync();
-                return Ok(autorAtualizado);
+                return Ok(autor);
             }
-            catch(Exception e){
+            catch(Exception){
                 return BadRequest();
             }
 
@@ -88,7 +100,7 @@ namespace Backend.Controllers
 
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Autor>> Apagar(int id){
+        public async Task<ActionResult<AutorModel>> Apagar(int id){
           
           var autor = await _context.Autores.FirstOrDefaultAsync(x => x.IdAutor == id);
           
@@ -102,7 +114,7 @@ namespace Backend.Controllers
             await _context.SaveChangesAsync();
             return Ok();
           }
-          catch(Exception e){
+          catch(Exception){
 
             return BadRequest();
           }

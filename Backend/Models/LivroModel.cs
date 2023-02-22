@@ -1,8 +1,12 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
+using Backend.Models;
 
 namespace Backend.Models
 {
-    public class Livro {
+    public class LivroModel
+    {
 
         [Key]
         public int IdLivro { get; set; }
@@ -37,8 +41,9 @@ namespace Backend.Models
         [Range(0, 10000)]
         public int QuantLivros { get; set; }
 
-        public ICollection<Autor>? Autores { get; set; }
+        
+        [JsonIgnore]
+        public ICollection<AutorModel>? Autores { get; set; }
 
     }
-    
 }
