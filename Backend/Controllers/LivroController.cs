@@ -26,47 +26,23 @@ namespace Controllers.LivroController
            return Ok (await _context.Livros.ToListAsync());
         }
 
-
-
         [HttpGet("{id}")]
-        public async Task<ActionResult<List<LivroModel>>> Pesquisa( string pesquisaNome){
-            if (_context.Livros == null){
-                return Problem("Não há livro com esse nome");
-            }
+        public async Task<ActionResult<LivroModel>> BuscaPersonalizada(string livroDigitado){
 
-            var livros = from db in _context.Livros
-                        select db;
+            var livro = _context.Livros
+            .Where(c => c.Titulo == livroDigitado || c.Subtitulo == livroDigitado
+            || c.Editora == livroDigitado);
 
-            if(!String.IsNullOrEmpty(pesquisaNome)){
-                livros = livros.Where(x => x.Titulo.Contains(pesquisaNome));
-            }            
 
-            
-           return Ok (await _context.Livros.ToListAsync());
-        }
-
-/*        [HttpGet("{id}")]
-        public async Task<ActionResult<LivroModel>> Busca (int id){
-
-            var livro = await _context.Livros.FirstOrDefaultAsync(x => x.IdLivro == id);
-
-            if(livro == null){
+            if (livro == null)
+            {
                 NotFound();
             }
 
-            return Ok(livro);
+           return Ok(livro);
 
-        }*/
+        }
 
-/*        [AcceptVerbs("GET", "POST")]
-        public ActionResult VerificaTitulo(string Titulo){
-
-            if(!_context.VerificaTitulo(Titulo)){
-                return Json($"O titulo chamado {Titulo} já existe.");
-            }
-
-            return Json(true);
-        }*/
 
         [HttpPost]
         public async Task<ActionResult<LivroModel>> Cadastrar(LivroModel model){
@@ -88,15 +64,12 @@ namespace Controllers.LivroController
                     
                     await _context.Livros.AddAsync(livro);
                     await _context.SaveChangesAsync();
-                   // return Created($"v1/livros/{novoLivro.IdLivro}", novoLivro);
 
                    return Ok();
                 }
                 catch (Exception){
                     return BadRequest();
                 }
-
-               // return Created($"v1/livros/{livro.IdLivro}", livro);
 
 
         }
@@ -123,7 +96,6 @@ namespace Controllers.LivroController
                 livro.Editora = model.Editora;
                 livro.Edicao = model.Edicao;
                 livro.QuantLivros = model.QuantLivros;
-               // livro.Autores = livroAtualizacao.Autores;
 
 
                 _context.Livros.Update(livro);
@@ -161,4 +133,18 @@ namespace Controllers.LivroController
         }
 
     }
+
+ 
+/*        [HttpGet("{id}")]
+        public async Task<ActionResult<LivroModel>> Busca (int id){
+
+            var livro = await _context.Livros.FirstOrDefaultAsync(x => x.IdLivro == id);
+
+            if(livro == null){
+                NotFound();
+            }
+
+            return Ok(livro);
+
+        }*/   
 }
