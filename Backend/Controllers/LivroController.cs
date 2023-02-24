@@ -29,9 +29,9 @@ namespace Controllers.LivroController
         [HttpGet("{id}")]
         public async Task<ActionResult<LivroModel>> BuscaPersonalizada(string livroDigitado){
 
-            var livro = _context.Livros
+            var livro = await _context.Livros
             .Where(c => c.Titulo == livroDigitado || c.Subtitulo == livroDigitado
-            || c.Editora == livroDigitado);
+            || c.Editora == livroDigitado).FirstOrDefaultAsync();
 
 
             if (livro == null)

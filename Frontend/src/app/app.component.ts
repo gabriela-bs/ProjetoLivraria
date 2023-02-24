@@ -5,6 +5,8 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.sass']
 })
+
+//registra tudo que vai ter no app
 export class AppComponent {
   title = 'Frontend';
 }

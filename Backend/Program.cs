@@ -2,6 +2,7 @@ using Backend.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore;
 
+var myAllowSpecificOrigins = "myAllowSpecificOrigins";
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -13,6 +14,17 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddDbContext<ApiDbContext>(op => 
     op.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
+
+builder.Services.AddCors(op => 
+{
+    op.AddPolicy(name: myAllowSpecificOrigins, 
+    builder => 
+    {
+        builder.WithOrigins("https://localhost:4200")
+        .AllowAnyMethod()
+        .AllowAnyHeader();
+});
+});
 
 builder.Services.AddSwaggerGen();
 
@@ -35,6 +47,9 @@ if (app.Environment.IsDevelopment())
         op.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
     });
 }
+//middleware?
+app.UseCors(myAllowSpecificOrigins); //habilita conexão com o angular
+
 
 app.UseHttpsRedirection();
 
