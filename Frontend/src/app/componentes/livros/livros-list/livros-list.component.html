@@ -1,0 +1,30 @@
+<div class="container my-5">
+    <h1 class="mb-3">Estoque</h1>
+    <table class="table table-striped table-hover table-bordered border-primary">
+        <thead>
+            <tr>
+                <th>Titulo</th>
+                <th>Subtitulo</th>
+                <th>Resumo</th>
+                <th>Páginas</th>
+                <th>Publicação</th>
+                <th>Editora</th>
+                <th>Edição</th>
+                <th>Quantidade</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of livros">
+                <td>{{ item.titulo }}</td>
+                <td>{{ item.subtitulo }}</td>
+                <td>{{ item.resumo }}</td>
+                <td>{{ item.quantPaginas }}</td>
+                <td>{{ item.dataPublicacao }}</td>
+                <td>{{ item.editora }}</td>
+                <td>{{ item.edicao }}</td>
+                <td>{{ item.quantLivros }}</td>
+                <td><a [routerLink]="['/livros', 'edit', item.id ]">Detalhe</a></td>
+            </tr> 
+        </tbody>
+    </table>
+</div>

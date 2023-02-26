@@ -1,28 +1,30 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LivrariaListComponent } from './livraria/livraria-list/livraria-list.component';
-import { LivrariaAddComponent } from './livraria/livraria-add/livraria-add.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { livrariaService } from './services/livraria.service';
-import { LivrariaComponent } from './livraria/livraria.component';
+import { LivrosListComponent } from './componentes/livros/livros-list/livros-list.component';
+import { AddLivroComponent } from './componentes/livros/add-livro/add-livro.component';
+import { HttpClientModule } from '@angular/common/http';
+import { LivrariaService } from './services/livraria.service';
+import { FormsModule } from '@angular/forms';
+import { EditLivroComponent } from './componentes/livros/edit-livro/edit-livro.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LivrariaListComponent,
-    LivrariaAddComponent,
-    LivrariaComponent,
+    LivrosListComponent,
+    AddLivroComponent,
+    EditLivroComponent
   ],
+  
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    FormsModule
   ],
-  providers: [ livrariaService ],
+  providers: [ ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

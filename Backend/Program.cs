@@ -2,21 +2,10 @@ using Backend.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore;
 
-var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddCors(op => 
-{
-    op.AddPolicy(name: MyAllowSpecificOrigins, 
-    policy => 
-    {
-        policy.WithOrigins("http://localhost:4200")
-        .AllowAnyHeader()
-        .AllowAnyMethod();
-        
-});
-});
 
 // Add services to the container.
 
@@ -56,7 +45,8 @@ app.UseStaticFiles();
 app.UseRouting();
 
 //middleware?
-app.UseCors(MyAllowSpecificOrigins); //habilita conexão com o angular
+app.UseCors(policy => policy.AllowAnyHeader().AllowAnyMethod()
+            .AllowAnyOrigin()); //habilita conexão com o angular
 
 app.UseAuthorization();
 

@@ -1,50 +1,27 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http'
+import { livro } from '../models/livro.model';
 import { Observable } from 'rxjs';
-
 
 @Injectable({
   providedIn: 'root'
 })
-export class livrariaService {
+export class LivrariaService {
 
-  apiUrl = 'https://localhost:7164/api/Livro';
+  apiUrl = 'https://localhost:7164';
 
   constructor(private http: HttpClient) { }
 
-  listaLivros(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl);
+
+  getAllLivros(): Observable<livro[]>{
+    return this.http.get<livro[]>(this.apiUrl + "/api/Livro")
   }
 
-  addLivros(data:any){
-    return this.http.post<any[]>(this.apiUrl, data);
+  addLivro(addLivroRequest: livro): Observable<livro>{
+    return this.http.post<livro>(this.apiUrl + "/api/Livro", addLivroRequest);
   }
 
-  atualizaLivro(id:number|string, data:any){
-    return this.http.put(this.apiUrl + '$/{id}', data);
+  getLivro(id: number): Observable<livro>{
+    return this.http.get<livro>(this.apiUrl + '/api/Livro/' + id)
   }
-
-  deletaLivro(id:number|string){
-    return this.http.delete(this.apiUrl + '$/{id}');
-  }
-
-  // tabela autor
-  listaAutores(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl);
-  }
-
-  addAutores(data:any){
-    return this.http.post<any[]>(this.apiUrl, data);
-  }
-
-  atualizaAutor(id:number|string, data:any){
-    return this.http.put(this.apiUrl + '$/{id}', data);
-  }
-
-  deletaAutor(id:number|string){
-    return this.http.delete(this.apiUrl + '$/{id}');
-  }
-
-
 }
-
