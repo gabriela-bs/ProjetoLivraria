@@ -21,17 +21,17 @@ namespace Controllers.LivroController
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<AutorModel>>> ListarLivros(){
+        public async Task<ActionResult<List<LivroModel>>> ListarLivros(){
 
            return Ok (await _context.Livros.ToListAsync());
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<LivroModel>> BuscaPersonalizada(string livroDigitado){
-
-            var livro = await _context.Livros
-            .Where(c => c.Titulo == livroDigitado || c.Subtitulo == livroDigitado
-            || c.Editora == livroDigitado).FirstOrDefaultAsync();
+        public async Task<ActionResult<LivroModel>> BuscaPersonalizada(int id, [FromQuery] string? livroDigitado){
+            //falta testar ainda
+            var livro = _context.Livros
+            .Where(c => c.IdLivro == id && (c.Titulo == livroDigitado || c.Subtitulo == livroDigitado
+            || c.Editora == livroDigitado)).FirstOrDefault();
 
 
             if (livro == null)
