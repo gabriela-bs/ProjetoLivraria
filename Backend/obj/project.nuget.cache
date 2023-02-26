@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "YY3dNtOD0q8nU4stXvSBJaJkMaTlUpjTzR/RNKvMCtnqTw7o08p/HYqf1yqtMoxs4vY4Q0D9J/vjdxEFIb8q7A==",
+  "dgSpecHash": "sy2ix2oMvGeAUEVD24u1owbB67l2WHMajzfkIvjAKOZbvLQkzzkuJe5QKotpj7NYQhTp6kiMtOz6r+vH8Jgl4A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Gabi Borges\\ProjetoLivraria\\backend\\Backend.csproj",
+  "projectFilePath": "C:\\Users\\Gabi Borges\\ProjetoLivraria\\Backend\\Backend.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Gabi Borges\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Gabi Borges\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

@@ -28,12 +28,12 @@ export class EditLivroComponent implements OnInit {
 
   ngOnInit(): void {
     
-    this.route.paramMap.subscribe({
+/*    this.route.paramMap.subscribe({
       next: (params) => {
         const id = params.get('id');
 
         if(id){
-          this.livrariaService.getLivro(id)
+          this.livrariaService.getLivro()
           .subscribe({
             next: (response) => {
               this.livroDetalhe = response;
@@ -42,7 +42,7 @@ export class EditLivroComponent implements OnInit {
           
         }
       }
-    })
+    })*/
   }
 
 }
